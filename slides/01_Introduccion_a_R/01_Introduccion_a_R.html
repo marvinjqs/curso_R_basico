@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Programación con R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Environmental Data Scientist      " />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link rel="stylesheet" href="..\my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Programación con R
+## <br/> Marvin J. Quispe Sedano
+### Environmental Data Scientist <br/><br/> <img src='../img/gif-logods.png' alt='envids' width='100' height='100'> <br/>
+### Lima, 2021
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://github.com/marvinjonathcn/curso_arcgis_intermedio" target="_blank"&gt; ArcGIS - Nivel Intermedio
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+class: inverse, center, middle
+
+## CLASE 1 
+### INTRODUCCIÓN A R
+
+---
+
+## Introducción
+
+- R es un entorno y lenguaje de programación ampliamente usado en la ciencia de datos, principalmente en el análisis estadístico.
+- La relación de R con el análisis de datos ambientales se evidencia ampliamente en la gran cantidad de paquetes modulares que se usan con este fin.
+
+&lt;img src='img/r_intro.png' width='70%' height='70%' class='centerimage'&gt;
+
+---
+
+## Objetivo
+
+- El objetivo del presente curso es proporcionar los conocimientos básicos para empezar a trabajar con el lenguaje de programación R, enfocado a su uso como herramienta principal en la gestión y análisis de datos.
+
+&lt;img src='img/ciencia-de-datos.png' width='70%' height='70%' class='centerimage'&gt;
+
+---
+
+## ¿Qué es R?
+
+- R fue creado en 1992 en Nueva Zelanda por Ross Ihaka y Robert Gentleman basandose en la sintaxis del **lenguaje S** desarrollado principalmente por John Chambers en Bell Laboratories y **Scheme** desarrollado por por Guy L. Steele y Gerald Jay Sussman (Ihaka 1998).
+- R es un lenguaje de programación interpretado, de **distribución libre**, bajo Licencia GNU, y se mantiene en un ambiente para el cómputo estadístico y gráfico, actualmente ampliamente aplicado para el procesamiento de datos en ciencias (Santana y Farfán 2014).
+- R no es un sistema estadístico sino un ambiente en el que se aplican técnicas estadísticas, este software corre en distintas plataformas Linux, Windows, MacOS, e incluso en PlayStation 3 (Santana y Farfán 2014).
+
+---
+
+## Características de R
+
+- El sistema R esta dividido en dos partes conceptuales: El sistema base de R, que es el que puedes bajar de CRAN, y en todo lo demás, principalmente **paquetes** modulares. 
+- La capacidad de gráficos de R es muy sofisticada. Existe paquetería para **graficar, crear y manejar shapefiles y archivos raster**; manipular y crear datos en distintos formatos como **netCDF, csv, xlsx, tiff, etc**.
+
+
+&lt;img src='img/rsshp.jpg' width='90%' height='90%' class='centerimage'&gt;
+
+---
+
+## ¿Qué es RStudio?
+
+- RStudio es un entorno de desarrollo integrado (IDE) para el lenguaje R, disponible para Windows, Mac, Linux y en casi **todos los sistemas operativos**.
+- Algunas ventajas de usar **RStudio** son : es **libre**, nos permite abrir varios scripts a la vez,  nos permite ejecutar pedazos de código de los scripts, disponibilidad de autocompletado de código, etc.
+- Se puede descargar desde los siguientes enlaces : [R v4.1.0](https://cran.r-project.org/bin/windows/base/R-4.1.0-win.exe) y [RStudio](https://download1.rstudio.org/desktop/windows/RStudio-1.4.1717.exe)
+
+
+&lt;img src='img/logosr.jpg' width='70%' height='70%' class='centerimage'&gt;
+
+---
+
+## Características de RStudio
+
+
+&lt;img src='img/rstudio1.jpg' width='100%' height='100%' class='centerimage'&gt;
+
+---
+
+## Paquetes de R
+
+Función | Acción
+------------ | -----------------------------------------
+library() | Lista de paquetes instalados
+install.packages("Nombre_del_paquete") | Instalación de un paquete
+library(Nombre_del_paquete) | Cargar un paquete a la sesión
+search() | Lista de paquetes instalados y cargados a la sesión
+.libPaths() | Directorio en el que 'R' almacena y busca los paquetes
+
+---
+
+## Paquetes de R
+
+
+&lt;img src='img/rpaquetes.jpg' width='70%' height='70%' class='centerimage'&gt;
+
+
+---
+
+## Ayuda en R
+
+- R dispone de un buen **sistema de ayuda** , lo que nos ayudará a obtener información de cualquier función en específico, caracter o palabra.
+
+Función | Acción
+------------ | -----------------------------------------
+help() | Muestra una ventana de ayuda general sobre 'R'
+help.start() | Arranca un manual de ayuda completo en formato html, utilizando el navegador del sistema
+help(Nombre) o ?Nombre | Muestra una ventana de ayuda sobre una función 
+help.search("Nombre") | Muestra un listado de contenidos acerca de una función, caracter y palabra
+
+---
+
+## Sintaxis de R
+
+- Ejemplo de un comentario: 
+
+
+```r
+# LOS COMENTARIOS EN "R" EMPIEZAN CON EL CARÁCTER '#'
+# -----------------------------------------------------
+```
+- La forma en la que se asigna un valor a una variable:
+
+
+```r
+u &lt;- 5
+```
+
+- La función 'print' nos ayudará a imprimir un valor de una variable en la consola:
+
+
+```r
+print(u) 
+```
+
+```
+## [1] 5
+```
+
+---
+
+- También se puede imprimir su valor digitando la variable: 
+
+
+```r
+u
+```
+
+```
+## [1] 5
+```
+- 'R' funciona como una calculadora, ejemplo :
+
+
+```r
+((5*5+3+5)^2) + 5/2
+```
+
+```
+## [1] 1091.5
+```
+
+```r
+log((1/pi)* 5) #Logaritmo neperiano
+```
+
+```
+## [1] 0.464708
+```
+
+---
+
+
+```r
+v &lt;- 1/Inf #Divide un número por Infinito
+v
+```
+
+```
+## [1] 0
+```
+
+```r
+w &lt;- 0/0 ; v # Indeterminado
+```
+
+```
+## [1] 0
+```
+
+```r
+p = 758.9 # Presión en mmHg
+patm = p*(1/760.0021) ; patm # Presión en atmósferas
+```
+
+```
+## [1] 0.9985499
+```
+---
+
+## Operaciones matemáticas en R
+
+
+&lt;img src='img/tablaop.jpg' width='50%' height='50%' class='centerimage'&gt;
+
+---
+
+class: inverse, center, middle
+
+# GRACIAS! &lt;br/&gt;  &lt;a href="mailto: marvinjqs@gmail.com"&gt; &lt;img alt="gmail" src="../img/gmail-logo.gif" width='20%' height='50%'&gt; &lt;/a&gt; 
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightLines": true,
+"highlightStyle": "solarized-dark",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
