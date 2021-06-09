@@ -37,3 +37,20 @@ R es un entorno y lenguaje de programación ampliamente usado en la ciencia de d
 | &nbsp;  &nbsp;  &nbsp;  &nbsp;• Ayuda en R |
 | &nbsp;  &nbsp;  &nbsp;  &nbsp;• Sintaxis de R |
 | &nbsp;  &nbsp;  &nbsp;  &nbsp;• Operaciones matemáticas en R |
+
+| 🌏 CLASE 2: [EL MANEJO DE DATOS EN R](https://marvinjonathcn.github.io/curso_R_basico/slides/02_Datos_en_R/02_Datos_en_R.html)  &nbsp;  |
+|:---------------------------------------------------------------|
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Introducción |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Tipos de datos en R |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Estructura de datos en R |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Vector|
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Matriz |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Array |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Caracteres |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Factores |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Listas |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Dataframe |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Ingresar datos manualmente |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Descargar datos desde un link URL |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Importar archivos de datos |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Exportar archivos de datos |
