@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Programación con R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Environmental Data Scientist      " />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link rel="stylesheet" href="..\my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Programación con R
+## <br/> Marvin J. Quispe Sedano
+### Environmental Data Scientist <br/><br/> <img src='../img/gif-logods.png' alt='envids' width='100' height='100'> <br/>
+### Lima, 2021
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://github.com/marvinjonathcn/curso_arcgis_intermedio" target="_blank"&gt; ArcGIS - Nivel Intermedio
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+class: inverse, center, middle
+
+## CLASE 2 
+### EL MANEJO DE DATOS EN R
+
+---
+
+## Introducción
+
+- Los datos describen algún suceso y/o entidad mediante una representación alfanúmerica, lo que permite poder analizarlos posteriormente.
+- Los datos por sí mismos no constituyen la información, se necesita interpretarlos para lograr ello.
+- El almacenamiento de los datos en R se da mediante lo que se denomina **objetos**.
+
+
+&lt;img src='img/r_intro_datos.png' width='80%' height='80%' class='centerimage'&gt;
+
+---
+
+## Tipos de datos en R
+
+- Todas las cosas que manipula R se llaman objetos, por ello se dice que **R esta orientado a objetos** (Santana y Farfán 2014).
+- Los objetos son **estructuras que combinan datos y funciones** que operan sobre ellos y son muy útiles en un entorno como R (Gil 2018).
+- En general, cada tipo de objeto viene definido por una serie de atributos. Las funciones genéricas (como por ejemplo *summary* o *plot*) reconocen estos atributos y llevan a cabo distintos tipos de acciones en función del tipo de objeto (Amazon AWS 2019).
+
+---
+
+## Tipos de datos en R
+
+Clases atómicas | Descripción | Ejemplo
+------------ | ------------ | ------------
+Character | Cadenas de caracteres | cimma &lt;- "minería"
+Numeric | Números reales | g &lt;- 9.8
+Integer | Números enteros | edad &lt;- 20L
+Complex | Números complejos | u &lt;- 5 + 2i
+logical | Lógicos o booleanos | v &lt;- FALSE
+NA | Datos perdidos o faltantes | w &lt;- NA
+NaN | Datos indeterminados | z &lt;- NaN
+
+---
+
+## Estructura de datos en R
+
+Objetos | Tipos | Varios Tipos
+------------ | ------------ | ------------
+Vector | Numérico, caracter, complejo o lógico | NO
+Factor | Numérico o caracter | NO
+Array | Numérico, caracter, complejo o lógico | NO
+Matrix | Numérico, caracter, complejo o lógico | NO
+Data frame | Numérico, caracter, complejo o lógico | SI
+ts | Numérico, caracter, complejo o lógico | SI
+List | Numérico, caracter, complejo, lógico, función, expresión, etc. | SI
+
+---
+
+## Estructura de datos en R
+
+
+&lt;img src='img/tiposdatos.jpg' width='100%' height='100%' class='centerimage'&gt;
+
+---
+
+class: inverse, center, middle
+
+## TIPOS DE DATOS 
+
+
+---
+
+## Vector
+
+- Cada uno de las clases de **objetos más simples o *atómicas* ** no se encuentran ni se manejan de manera aislada, sino encapsulados dentro de la clase de objeto más básica del lenguaje R: **el vector** (Santana y Farfán 2014).
+- Un **vector** puede contener cero o más objetos, pero todos de la misma clase (Santana y Farfán 2014).
+
+
+&lt;img src='img/vectorimg.jpg' width='60%' height='60%' class='centerimage'&gt;
+
+---
+
+
+```r
+
+c(5,7,9,-15) # Creación de un vector sin asignarlo a una variable
+## [1]   5   7   9 -15
+
+u &lt;- c(5,7,9,-15) # Creación de un vector asignandolo a una variable
+card &lt;- c("E","W","N","S")
+
+assign("w", c(5,7,9,-15)) # La función 'assign' asigna un vector a una variable
+```
+
+
+```r
+
+print(u); print(w)
+## [1]   5   7   9 -15
+## [1]   5   7   9 -15
+```
+
+*NOTA: La impresión del vector se hace en un renglón que comienza con el símbolo ’[1]’, indicando con ello que el primer elemento del renglón corresponde al primer elemento del vector.*
+
+---
+
+- Creación de vectores a partir de patrones o secuencias:
+
+
+```r
+
+v &lt;- vector("integer", 0)
+v # Un vector de enteros sin elementos
+## integer(0)
+
+w &lt;- vector("numeric", 5)
+w # Un vector de tres ceros
+## [1] 0 0 0 0 0
+```
+
+- El operador ’:’ genera un vector a partir de una secuencia de enteros:
+  
+
+```r
+x &lt;- 50:80 ; y = pi:7
+print(x); class(x) ; print(y) 
+##  [1] 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74
+## [26] 75 76 77 78 79 80
+## [1] "integer"
+## [1] 3.141593 4.141593 5.141593 6.141593
+```
+---
+
+- La función "seq()" permite generar mayor variedad de secuencias numéricas:
+
+
+```r
+
+u &lt;- seq(from = 2, to = 19, by = 2)
+print(u) # secuencia desde 2 hasta 18 de 2 en 2
+## [1]  2  4  6  8 10 12 14 16 18
+
+v &lt;- seq(from = 3, by = 3, length.out = 8)
+print(v) # secuencia de 8 números iniciando desde 3 y de 3 en 3
+## [1]  3  6  9 12 15 18 21 24
+```
+
+- La función "rep()" permite repetir una secuencia de números varias veces:
+
+
+```r
+v &lt;- c(pi, -3, 1+3i)
+w &lt;- rep(v, times = 2)
+print(w) ; class(w)
+## [1]  3.141593+0i -3.000000+0i  1.000000+3i  3.141593+0i -3.000000+0i
+## [6]  1.000000+3i
+## [1] "complex"
+```
+
+---
+
+- La función "c()" permite construir vectores a partir de otros:
+
+
+```r
+
+u &lt;- c(3, 4, 5)
+v &lt;- c(5, 4, 3)
+w &lt;- c(u, v)
+```
+
+- Acceso a un elemento individual de un vector:
+
+
+```r
+
+u &lt;- c(18, 75, -2.33, 72)
+u[3] # El cuarto elemento
+## [1] -2.33
+
+u[4]+u[2] # La suma del cuarto y segundo elementos de 'u'
+## [1] 147
+```
+---
+
+- Poner nombres a los elementos individuales de un vector:
+
+
+```r
+
+temp &lt;- c(28, 29, 29, 30) #Temperatura ambiente
+names(temp) &lt;- c("a", "b", "c", "d")       # OTRA FORMA :  temp &lt;- c(a=28, b=29 ....
+
+temp
+##  a  b  c  d 
+## 28 29 29 30
+
+temp["b"]
+##  b 
+## 29
+
+temp["b"] &lt;- 28
+temp
+##  a  b  c  d 
+## 28 28 29 30
+```
+
+---
+
+- Operaciones matemáticas con vectores 
+
+
+```r
+v &lt;- 4 + 34 + 2      # Resulta en un vector de longitud 1
+v
+## [1] 40
+
+v &lt;- c(21, 13) - c(4, 17)     # Resulta en un vector de longitud 2
+v
+## [1] 17 -4
+
+v &lt;- c(2, 3, 4) * c(2, 1, 3)     # Resulta en un vector de longitud 3
+v
+## [1]  4  3 12
+
+v &lt;- c(1, 2, 3, 4)^(4:1)     # Eleva a potencias 4,3,2,1
+v
+## [1] 1 8 9 4
+```
+---
+
+- Manejo de funciones trigonométricas:
+
+
+```r
+
+# Para obtener el seno de 30, 45 y 60 grados:
+
+# Primero se hace la conversión a radianes
+
+angulos &lt;- c(30, 45, 60) * (pi/180)
+angulos # En radianes
+## [1] 0.5235988 0.7853982 1.0471976
+
+# Luego se aplica la función trigonométrica
+# sin() , cos() , tan() ....
+
+senos &lt;- sin(angulos)
+senos
+## [1] 0.5000000 0.7071068 0.8660254
+```
+
+---
+
+## Matriz
+
+- Es una estructura de datos **bidimensional** (DATAMENTOR 2018).
+- La matriz es similar al vector,  pero adicionalmente contiene el atributo: ***dim*** (dimensión) (DATAMENTOR 2018). Este atributo es un vector entero de dos elementos : el número de renglones y el número de columnas que componen a la matriz (Santana y Farfán 2014).
+
+
+&lt;img src='img/matrix.jpg' width='70%' height='70%' class='centerimage'&gt;
+
+---
+
+## Array
+
+- Un **Array** es una **estructura de datos**. Puede ser de **1D** (por ejemplo, números, cadenas, etc.), **2D** (por ejemplo, información de color de píxeles de una imagen), **3D** (por ejemplo, tabla de datos) o cualquier **n Dimensiones** (QUORA 2015). 
+- Se crea utilizando la función *array ()*, usando vectores como entrada y el parámetro *dim*.
+
+&lt;img src='img/arrayf.jpg' width='70%' height='70%' class='centerimage'&gt;
+
+---
+
+- Creación de un array:
+
+
+```r
+# CREACIÓN DE DOS VECTORES DE DIFERENTES LONGITUDES
+vector1 &lt;- c(54,-8,4)
+vector2 &lt;- c(1,7,18,14,-4,15.5)
+column.names &lt;- c("COL1","COL2","COL3")
+row.names &lt;- c("ROW1","ROW2","ROW3")
+matrix.names &lt;- c("Matrix1","Matrix2")
+
+# LOS VECTORES ANTERIORES SERÁN LA ENTRADA DE NUESTRO 'ARRAY'
+result &lt;- array(c(vector1,vector2),dim = c(3,3,2),
+          dimnames = list(row.names,column.names,matrix.names))
+
+print(result)
+```
+
+---
+
+&lt;img src='img/arrayf2.jpg' width='50%' height='50%' class='centerimage'&gt;
+
+---
+
+- Construcción de matrices:
+
+
+```r
+
+m &lt;- 1:20 # Un vector con 20 números
+dim(m) &lt;- c(4, 5) # 4 renglones y 5 columnas
+class(m); m
+## [1] "matrix"
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    5    9   13   17
+## [2,]    2    6   10   14   18
+## [3,]    3    7   11   15   19
+## [4,]    4    8   12   16   20
+
+#LAS DIMENSIONES TAMBIÉN SE PUEDEN CAMBIAR
+dim(m) &lt;- c(5, 4) ; m
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    6   11   16
+## [2,]    2    7   12   17
+## [3,]    3    8   13   18
+## [4,]    4    9   14   19
+## [5,]    5   10   15   20
+```
+
+---
+
+- Selección de elementos en una matriz:
+
+
+```r
+
+#SELECCIÓN DE UN ELEMENTO (FILA Y COLUMNA)
+ m[4,2]
+## [1] 9
+#SELECCIÓN DE UN ELEMENTO (POR POSICIÓN)
+m[7]
+## [1] 7
+#SELECCIONAR LOS ELEMENTOS DE UNA COLUMNA O FILA
+m[3, ] 
+## [1]  3  8 13 18
+
+m[,3 ]
+## [1] 11 12 13 14 15
+
+class(m[, 3])
+## [1] "integer"
+```
+
+---
+
+- Modificar el nombre de los atributos de una matriz:
+
+
+```r
+#ASIGNAR NOMBRES A FILAS Y COLUMNAS
+rownames(m) &lt;- c("uno", "dos", "tres", "cuatro", "cinco")
+colnames(m) &lt;- c("a", "b", "c", "d") ; m
+##        a  b  c  d
+## uno    1  6 11 16
+## dos    2  7 12 17
+## tres   3  8 13 18
+## cuatro 4  9 14 19
+## cinco  5 10 15 20
+
+n &lt;- matrix(1:12, nrow = 3, ncol = 4, byrow = TRUE)
+n
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    3    4
+## [2,]    5    6    7    8
+## [3,]    9   10   11   12
+```
+
+---
+
+- Las funciones *rbind()* y *cbind()* se pueden utilizar para construir matrices:
+
+
+```r
+u &lt;- rbind(c(1.5, 3.2, -5.5), c(0, -1.1, 60))
+u
+##      [,1] [,2] [,3]
+## [1,]  1.5  3.2 -5.5
+## [2,]  0.0 -1.1 60.0
+```
+- Una manera fácil de crear matrices:
+
+
+```r
+v &lt;- matrix(1:6, 3, 2) ; v
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6
+```
+
+---
+
+- La multiplicación matricial se hace con el operador '%*%' :
+
+
+```r
+n &lt;- matrix(1:6, 3, 2)
+m &lt;- rbind(8:10, 10:12)
+x &lt;- n%*%m
+
+#LA TRANSPUESTA DE LA MATRIZ 'x' SE OBTIENE CON 't(A)'
+t(x)
+##      [,1] [,2] [,3]
+## [1,]   48   66   84
+## [2,]   53   73   93
+## [3,]   58   80  102
+```
+---
+
+## Caracteres
+
+- En R, las cadenas de caracteres son **vectores** utilizados para nombrar objetos (Santana y Farfán 2014).
+- Un fragmento de texto se representa como una secuencia de caracteres (letras, números y símbolos) (Sánchez 2019).
+
+
+```r
+persona &lt;- c("Hugo", "Mario", "Luis")
+meses&lt;- c("Dic", "Feb", "Oct")
+paises &lt;- c("Brasil","Perú","Colombia")
+gasesdeefec &lt;- c( "CO2", "CH4" , "N2O", "CFC")
+```
+
+---
+
+## Factores
+
+- Un factor puede considerarse como una *estructura de información*, a la que se puede someter a algún tipo de procesamiento estadístico, cuyo núcleo son dos vectores: **los niveles (*levels*) y un vector de índices enteros** (Santana y Farfán 2014).
+- En R, se utilizan habitualmente para realizar clasificaciones de los datos, estableciendo su pertenencia a los grupos o categorías determinados por los *levels* (Santana y Nieves 2014).
+- Los niveles de un factor puede estar codificados como valores numéricos o como caracteres (Santana y Nieves 2014). 
+
+---
+
+- Transformamos el vector a factor mediante la función 'as.factor()'
+
+
+```r
+sexo &lt;- c("M", "H", "H", "M", "H", "H", "H", "M", "H", "M")
+sexo &lt;- as.factor(sexo) ; sexo
+##  [1] M H H M H H H M H M
+## Levels: H M
+
+#COMO SE PUEDE VER EL NÚCLEO DE LA CLASE SON DOS VECTORES :
+unclass(sexo)
+##  [1] 2 1 1 2 1 1 1 2 1 2
+## attr(,"levels")
+## [1] "H" "M"
+```
+
+- La función 'table()' nos da como resultado la frecuencia de aparición:
+
+
+```r
+table(sexo)
+## sexo
+## H M 
+## 6 4
+```
+
+---
+
+- Se puede establecer un orden determinado en los niveles:
+
+
+```r
+mesdenac &lt;- c("Dic", "Feb", "Oct", "Mar", "Feb", "Nov","Abr", "Dic", "Feb", "Oct")
+meses &lt;- c("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago", "Sep","Oct","Nov","Dic")
+
+m &lt;- factor(mesdenac, levels= meses) ; m
+##  [1] Dic Feb Oct Mar Feb Nov Abr Dic Feb Oct
+## Levels: Ene Feb Mar Abr May Jun Jul Ago Sep Oct Nov Dic
+
+levels(m)[2] &lt;- "marzo" ; m
+##  [1] Dic   marzo Oct   Mar   marzo Nov   Abr   Dic   marzo Oct  
+## Levels: Ene marzo Mar Abr May Jun Jul Ago Sep Oct Nov Dic
+```
+&lt;center&gt; &lt;img src="figures/factors.jpg" width="45%"/&gt; &lt;/center&gt;
+
+---
+
+## Listas
+
+- Una lista es una clase de datos que puede contener cero o más elementos, cada uno de los cuales puede ser de una **clase distinta** (Santana y Farfán 2014).
+- Al igual que los vectores, **los elementos de la lista pueden ser nombrados**, lo que añade mayor claridad a su significado (Santana y Farfán 2014).
+
+
+&lt;img src='img/list.jpg' width='80%' height='80%' class='centerimage'&gt;
+
+---
+
+- Construcción de una lista que represente una familia:
+
+
+```r
+listfam&lt;- list(hombre = "Juan", mujer = "Sonia", casados = TRUE, numero.hijos = 3, nombre.hijos=c('Hugo', 'Paco', 'Mary'))
+listfam
+## $hombre
+## [1] "Juan"
+## 
+## $mujer
+## [1] "Sonia"
+## 
+## $casados
+## [1] TRUE
+## 
+## $numero.hijos
+## [1] 3
+## 
+## $nombre.hijos
+## [1] "Hugo" "Paco" "Mary"
+```
+
+---
+
+- Una lista puede contener otra lista:
+
+
+```r
+l1 &lt;- list(nombre= "Marcos",nacimiento= 1986) ;  l2 &lt;- list(nombre= "Juan", DNI = 46174852)
+l3 &lt;- list(l1,l2) ; l3
+## [[1]]
+## [[1]]$nombre
+## [1] "Marcos"
+## 
+## [[1]]$nacimiento
+## [1] 1986
+## 
+## 
+## [[2]]
+## [[2]]$nombre
+## [1] "Juan"
+## 
+## [[2]]$DNI
+## [1] 46174852
+```
+
+---
+
+## Dataframe
+
+- Un *dataframe* es una lista, cuyos componentes pueden ser vectores, matrices o factores, con la única salvedad de que las longitudes deben coincidir en todos los componentes (Santana y Farfán 2014).
+- La estructura de un *dataframe* es muy similar a la de una matriz, La diferencia es que una matriz sólo admite valores numéricos, mientras que en un *dataframe* podemos incluir también datos alfanuméricos (Santana y Nieves 2014).
+
+
+&lt;img src='img/datafram.jpg' width='80%' height='80%' class='centerimage'&gt;
+
+---
+
+class: inverse, center, middle
+
+## IMPORTAR Y EXPORTAR DATOS
+
+
+---
+
+## Ingresar datos manualmente
+
+- La función "readline()" nos permite ingresar datos manualmente mediante la consola para que posteriormente se almacenen en un objeto.
+- La librería "svDialogs" nos permite ingresar datos manualmente mediante una ventana emergente para que posteriormente se almacenen en un objeto.
+- La función "winDialog()" del paquete "utils" nos permite crear botones de diálogo de Windows para responder a una solicitud.
+
+
+&lt;img src='img/ingresar-datos.png' width='70%' height='70%' class='centerimage'&gt;
+
+---
+
+- Ingresar datos usando la función "readline()"
+
+
+```r
+
+# LA FUNCION readline NOS PERMITE INGRESAR DATOS EN LA CONSOLA
+
+nombre &lt;- readline(prompt="Ingrese su nombre y apellidos: ")
+## Ingrese su nombre y apellidos:
+edad &lt;- readline(prompt="Ingrese su edad: ")
+## Ingrese su edad:
+dni &lt;- readline(prompt="Ingrese su DNI: ")
+## Ingrese su DNI:
+
+print(paste("Hola,", nombre, 
+            "Identificado con DNI:", dni, 
+            ",con", edad, "años de edad."))
+## [1] "Hola,  Identificado con DNI:  ,con  años de edad."
+```
+
+---
+
+- Ingresar datos usando la función "dlgInput()"
+
+
+```r
+
+# LA FUNCION dlgInput NOS PERMITE INGRESAR DATOS EN LA VENTANA EMERGENTE
+
+library(svDialogs)
+
+nombre &lt;- dlgInput(message=="Ingrese su nombre y apellidos: ")$res
+edad &lt;- dlgInput(message=="Ingrese su edad: ")$res
+dni &lt;- dlgInput(message=="Ingrese su DNI: ")$res
+
+print(paste("Hola,", nombre, 
+            "Identificado con DNI:", dni, 
+            ",con", edad, "años de edad."))
+## [1] "Hola,  Identificado con DNI:  ,con  años de edad."
+```
+---
+
+- Ingresar la respuesta a una premisa usando la función "winDialog()"
+
+
+```r
+
+# LA FUNCION dlgInput NOS PERMITE INGRESAR DATOS EN LA VENTANA EMERGENTE
+
+library(utils)
+
+winDialog(type="ok", message="¿Está seguro de borrar su información?")
+winDialog(type="okcancel", message="¿Desea proceder con el análisis?")
+winDialog(type="yesno", message="¿Desea seguir con la instalación?")
+winDialog(type="yesnocancel", message="¿Desea guardar su archivo antes de cerrar?")
+
+respuesta &lt;- winDialog(type="yesno", mess="¿Desea guardar su archivo antes de cerrar?")
+
+if (answer=='YES') {
+  print('Su archivo fue guardado!')
+  } else {
+  print('Lástima')
+  }
+
+```
+---
+
+## Descargar datos desde un link URL
+
+- La función "download.file()" nos permite descargar datos a nuestro directorio de trabajo mediante el link que los contiene.
+
+
+```r
+
+# LA FUNCION dlgInput NOS PERMITE DESCARGAR DATOS DESDE UN URL
+
+getwd()
+
+download.file(
+  url = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt", 
+  destfile = "mauna-loa-data.csv"
+  )
+
+```
+---
+
+## Importar archivos de datos
+
+- Dependiendo del tipo de estructura de datos encontraremos librerías específicas para la importación de archivos de datos.
+- La función "read.table()" nos permite importar cualquier tipo de archivo que contenga una tabla a nuestro proyecto. La condición para el uso de esta función es una separación definida de cada columna o variable por espacios, comas, o algún otro carácter.
+
+
+```r
+
+# LA FUNCION read.table() nos permite importar archivos de datos
+
+download.file(
+  url = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt", 
+  destfile = "mauna-loa-data.csv"
+  )
+
+data &lt;- read.table(file = "mauna-loa-data.csv")
+```
+
+---
+
+- Visualizar los primeros elementos del dataframe:
+
+
+```r
+
+download.file(
+  url = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt", 
+  destfile = "mauna-loa-data.csv"
+  )
+
+data &lt;- read.table(file = "mauna-loa-data.csv")
+
+head(data, 10)
+##      V1     V2   V3
+## 1  1959 315.98 0.12
+## 2  1960 316.91 0.12
+## 3  1961 317.64 0.12
+## 4  1962 318.45 0.12
+## 5  1963 318.99 0.12
+## 6  1964 319.62 0.12
+## 7  1965 320.04 0.12
+## 8  1966 321.37 0.12
+## 9  1967 322.18 0.12
+## 10 1968 323.05 0.12
+```
+
+---
+
+## Exportar archivos de datos
+
+- Dependiendo del tipo de estructura de datos encontraremos librerías específicas para la exportación de archivos de datos. 
+- La función "write.table()" nos permite exportar matrices o dataframes como archivos de texto con distintas extensiones.
+
+
+&lt;img src='img/descarga-datos.png' width='40%' height='40%' class='centerimage'&gt;
+
+---
+
+- Exportar un dataframe a nuestro directorio de trabajo:
+
+
+```r
+
+# LA FUNCION download.file() NOS PERMITE EXPORTAR DATAFRAMES
+
+download.file(
+  url = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt", 
+  destfile = "mauna-loa-data.csv"
+  )
+
+data &lt;- read.table(file = "mauna-loa-data.csv")
+
+names(data) &lt;- c("YEAR", "MEAN_CO", "UC")
+
+write.table(data, file = "mauna-loa-data2.csv", header = T)
+
+```
+
+
+---
+
+class: inverse, center, middle
+
+# GRACIAS! &lt;br/&gt;  &lt;a href="mailto: marvinjqs@gmail.com"&gt; &lt;img alt="gmail" src="../img/gmail-logo.gif" width='20%' height='50%'&gt; &lt;/a&gt; 
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightLines": true,
+"highlightStyle": "solarized-dark",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
