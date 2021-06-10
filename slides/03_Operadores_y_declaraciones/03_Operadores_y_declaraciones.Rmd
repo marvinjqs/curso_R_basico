@@ -1,0 +1,336 @@
+---
+title: "Programación con R"
+subtitle: "<br/> Marvin J. Quispe Sedano "
+author: "Environmental Data Scientist <br/><br/> <img src='../img/gif-logods.png' alt='envids' width='100' height='100'> <br/>"
+date: "Lima, 2021"
+output:
+  xaringan::moon_reader:
+    css: "../my-theme.css"
+    lib_dir: libs
+    nature:
+      highlightLines: true
+      highlightStyle: solarized-dark
+      countIncrementalSlides: true
+      
+---
+
+```{r child = "../setup.Rmd"}
+```
+
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+# AGREGAR PAQUETES A UTILIZAR
+
+```
+class: inverse, center, middle
+
+## CLASE 3 
+### LOS OPERADORES Y DECLARACIONES EN R
+
+---
+
+## Introducción
+
+- Los operadores son símbolos que nos permiten realizar una tarea en específico.
+- Las estructuras de control o declaraciones nos permiten facilitar y tener un control sobre la manera en que se ejecutan nuestros bloques de código.
+
+
+<img src='img/loops-picture.png' width='25%' height='25%' class='centerimage'>
+
+---
+
+class: inverse, center, middle
+
+## OPERADORES
+
+
+---
+
+## Operadores aritméticos
+
+- Los operadores aritméticos se utilizan con valores numéricos para realizar operaciones matemáticas comunes.
+- En R, cualquier operación aritmeética que contenga **NA** devolverá **NA** como resultado.
+
+Operador | Operación | Ejemplo 
+------------ | ------------ | ------------
++ | Suma | 5+6
+- | Resta | 10-4
+* | Multiplicación | 20*3
+/ | División | 10/2
+^ | Potencia | 4^2
+%% | División entera | 5%%2
+
+
+---
+
+## Operadores relacionales 
+
+- Los operadores relacionales sirven para comparar o establecer una relación entre objetos, devolviendo un resultado booleano (True o False) según el comparativo realizado.
+- Las relaciones entre objetos de tipo "character" se dan en base al orden alfabético.
+- Las relaciones entre objetos de tipo "factor" siempre devuelven **NA**.
+
+Operador | Comparación | Ejemplo
+------------ | ------------ | ------------
+< | Menor que | 3 < 5
+<= | Menor o igual que | 2 <= 7
+> | Mayor que | 4 > 10
+>= | Mayor o igual que | 11 >= 7
+== | Exactamente igual que | 5 == 3
+!= | No es igual que | 5 != 3
+
+---
+
+## Operadores lógicos
+
+- Los operadores lógicos nos permiten hacer comparativos entre valores de tipo booleano (True o False).
+- En las operaciones lógicas todo valor distinto a **0** es coercionado a **TRUE**.
+
+Operador | Comparación | Ejemplo
+------------ | ------------ | ------------
+x l y | x **o** y es verdadero | TRUE l FALSE
+z & w | z **y** w son verdaderos | TRUE & FALSE
+!x | x no es verdadero (negación) | !FALSE
+isTRUE(x) | x es verdadero (afirmación) | isTRUE(FALSE)
+
+---
+
+## Operadores de asignación 
+
+- Los operadores de asignación nos permiten asignar valores a los objetos.
+- En R, si asignamos un valor a un objeto que ya había sido creado anteriormente, se sobreescribe y conserva el valor más reciente.
+
+Operador | Definición | Ejemplo
+------------ | ------------ | ------------
+<- | Asigna un valor a una variable | y <- 5.6
+= | Asigna un valor a una variable | z = "UNALM"
+
+---
+
+class: inverse, center, middle
+
+## INTRUCCIONES DE CONTROL O DECLARACIONES
+
+---
+
+## Instrucción "if"
+
+- La instrucción "if" nos permite ejecutar un bloque de código si se cumple con determinada condición.
+
+```{r , echo = TRUE , collapse = TRUE}
+
+# CREAMOS UN OBJETO PARA LA APLICACION DE LA INSTRUCCION
+
+x <- 10
+
+if (x>5) {
+  print("La operación se realizó con éxito")
+  print("El número es mayor que 5")
+}
+
+```
+
+---
+
+## Instrucción "else"
+
+- La instrucción "if else" nos permite ejecutar un bloque de código cuando no se cumple con la condición evaluada por la instrucción "if". 
+
+```{r , echo = TRUE , collapse = TRUE}
+
+# CREAMOS UN OBJETO PARA LA APLICACION DE LA INSTRUCCION
+
+x <- 4
+
+if (x>5) {
+  print("La operación se realizó con éxito")
+  print("El número es mayor que 5")
+} else{
+  print("La operación no se realizó")
+  print("El número es menor o igual que 5")
+}
+
+```
+
+---
+
+## Instrucción "else if"
+
+- La instrucción "if else" nos permite ejecutar un bloque de código cuando no se cumple con la condición evaluada por la instrucción "if" y se necesite más de una instrucción. 
+
+```{r , echo = TRUE , collapse = TRUE}
+
+# CREAMOS UN OBJETO PARA LA APLICACION DE LA INSTRUCCION
+
+x <- 5
+
+if (x > 5) {
+  print("La operación se realizó con éxito")
+  print("El número es mayor que 5")
+} else if (x == 5) {
+  print("La operación no se realizó")
+  print("El número es igual a 5")
+} else {
+  print("La operación no se realizó")
+  print("El número es menor o igual que 5") 
+}
+
+```
+
+---
+
+## Instrucción "ifelse"
+
+- La instrucción "ifelse" nos permite evaluar de manera rápida si contamos con solo una instrucción para "if" y una instrucción para "else".
+
+```{r , echo = TRUE , collapse = TRUE}
+
+# CREAMOS UN OBJETO PARA LA APLICACION DE LA INSTRUCCION
+
+x <- 5
+
+ifelse(x > 5, "El número es mayor que 5", "El número es menor o igual que 5")
+
+```
+
+---
+
+## Instrucción "for"
+
+- Los Loops o "bucles" son la manera de repetir alguna función o líneas de código, mientras se cumplan determinadas condiciones.
+- La instrucción "for" es útil para repetir un procedimiento cierta cantidad de veces.
+
+```{r , echo = TRUE , collapse = TRUE}
+
+# CREAMOS UN OBJETO PARA LA APLICACION DE LA INSTRUCCION
+
+x <- c(20,15,17,18,20,25,26,29)
+
+# CREAMOS UN VECTOR VACIO
+
+vector <- c()
+
+for (i in 1:length(x)) {
+  z <- x[i]*2
+  vector[i] <- z + i
+}
+
+print(vector)
+
+```
+
+---
+
+## Instrucción "while"
+
+- La instrucción "while" es muy útil para repetir un procedimiento siempre que se cumple una condición.
+
+```{r , echo = TRUE , collapse = TRUE}
+
+# CREAMOS UN OBJETO PARA LA APLICACION DE LA INSTRUCCION
+
+x <- 1
+
+while (x < 10) {
+  print(x)
+  x <- x + 1
+
+}
+
+```
+
+---
+
+## Instrucción "repeat"
+
+- La instrucción "repeat" es muy útil para repetir un procedimiento, usando un "break" para detenerse.
+
+```{r , echo = TRUE , collapse = TRUE}
+
+# CREAMOS UN OBJETO PARA LA APLICACION DE LA INSTRUCCION
+
+x <- 0
+
+repeat {
+  x <- x + 1
+  if(x == 10) {
+    break
+  }
+}
+
+print(x)
+
+```
+
+---
+
+## Instrucción "break"
+
+- La instrucción "break" nos permite interrumpir un bucle al cumplir determinada condición.
+
+```{r , echo = TRUE , collapse = TRUE}
+
+# CREAMOS UN OBJETO PARA LA APLICACION DE LA INSTRUCCION
+
+x <- c(20,15,17,18,20,25,26,29)
+
+# CREAMOS UN VECTOR VACIO
+
+vector <- c()
+
+for (i in 1:length(x)) {
+  
+  if (i == 4){
+    break
+    }
+  
+  z <- x[i]*2
+  vector[i] <- z + i
+
+}
+
+print(vector)
+
+```
+
+---
+
+
+## Instrucción "next"
+
+- La instrucción "next" nos permite omitir una interacción en un bucle cuando se cumple determinada condición.
+
+```{r , echo = TRUE , collapse = TRUE}
+
+# CREAMOS UN OBJETO PARA LA APLICACION DE LA INSTRUCCION
+
+x <- c(20,15,17,18,20,25,26,29)
+
+# CREAMOS UN VECTOR VACIO
+
+vector <- c()
+
+for (i in 1:length(x)) {
+  
+  if (i == 4){
+  next
+  }
+  
+  z <- x[i]*2
+  vector[i] <- z + i
+
+}
+
+print(vector)
+
+```
+
+
+---
+
+
+class: inverse, center, middle
+
+# GRACIAS! <br/>  <a href="mailto: marvinjqs@gmail.com"> <img alt="gmail" src="../img/gmail-logo.gif" width='20%' height='50%'> </a> 
+
+
+
