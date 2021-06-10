@@ -54,3 +54,21 @@ R es un entorno y lenguaje de programación ampliamente usado en la ciencia de d
 | &nbsp;  &nbsp;  &nbsp;  &nbsp;• Descargar datos desde un link URL |
 | &nbsp;  &nbsp;  &nbsp;  &nbsp;• Importar archivos de datos |
 | &nbsp;  &nbsp;  &nbsp;  &nbsp;• Exportar archivos de datos |
+
+| 🌏 CLASE 3: [LOS OPERADORES Y DECLARACIONES EN R](https://marvinjonathcn.github.io/curso_R_basico/slides/03_Operadores_y_declaraciones/03_Operadores_y_declaraciones.html)  &nbsp;  |
+|:---------------------------------------------------------------|
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Introducción |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Operadores aritméticos |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Operadores relacionales |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Operadores lógicos |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Operadores de asignación |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Instrucción "if" |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Instrucción "else" |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Instrucción "else if" |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Instrucción "ifelse" |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Instrucción "for" |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Instrucción "while" |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Instrucción "repeat" |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Instrucción "break" |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Instrucción "next" |
+
