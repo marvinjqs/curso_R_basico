@@ -1,0 +1,161 @@
+---
+title: "Programación con R"
+subtitle: "<br/> Marvin J. Quispe Sedano "
+author: "Environmental Data Scientist <br/><br/> <img src='../img/gif-logods.png' alt='envids' width='100' height='100'> <br/>"
+date: "Lima, 2021"
+output:
+  xaringan::moon_reader:
+    css: "../my-theme.css"
+    lib_dir: libs
+    nature:
+      highlightLines: true
+      highlightStyle: solarized-dark
+      countIncrementalSlides: true
+      
+---
+
+```{r child = "../setup.Rmd"}
+```
+
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+# AGREGAR PAQUETES A UTILIZAR
+
+```
+class: inverse, center, middle
+
+## CLASE 4 
+### LAS FUNCIONES EN R
+
+---
+
+## Introducción
+
+- Los operadores son símbolos que nos permiten realizar una tarea en específico.
+- Las estructuras de control o declaraciones nos permiten facilitar y tener un control sobre la manera en que se ejecutan nuestros bloques de código.
+
+
+<img src='img/loops-picture.png' width='25%' height='25%' class='centerimage'>
+
+---
+
+## Funciones 
+
+- Una función constituye un fragmento de código, que se llama por su nombre, y que se ejecuta en un orden determinado. Una función opera con datos de entrada (parámetros) y puede devolver un valor de retorno.
+
+
+<img src='img/function.png' width='35%' height='35%' class='centerimage'>
+
+---
+
+## Estructura de una función
+
+- Una función en R, está definida por sus argumentos o "inputs" y las operaciones (bloques de código) que se van a ejecutar al usar la función.
+- Una función puede ser almacenada en un **objeto**.
+
+```{r , echo = TRUE , collapse = TRUE, eval = TRUE}
+
+# ESTRUCTURA DE UNA FUNCION EN R
+
+nombre <- function(argumento1, argumento2, ...) {
+  operaciones
+  operaciones
+  ...
+  
+  return(resultado)
+}
+
+
+```
+
+---
+
+## Importancia de las funciones
+
+- Las funciones nos permiten volver más eficiente nuestro flujo de trabajo en la programación, simplificando operaciones y automatizando ejecuciones de bloques de código.
+
+```{r , echo = TRUE , collapse = TRUE}
+
+# CREAMOS UN VECTOR ALEATORIO DE TEMPERATURAS
+
+set.seed(123)
+temp <- rnorm(n = 30, mean = 19, sd = .75)
+idx <- 1:length(temp)
+
+temp <- data.frame(idx, temp)
+
+# CREAMOS UN GRÁFICO DE PUNTOS 
+
+library(ggplot2)
+
+fig <- ggplot() + 
+  geom_point(data = temp, aes(x = idx, y = temp), color = "black") +
+  geom_line(data = temp, aes(x = idx, y = temp), color = "blue")
+
+```
+
+---
+
+- Podemos generar un gráfico simple para una serie de tiempo de valores de temperatura ambiental de una estacion meteorológica. Pero qué pasaría si necesitariamos generar el mismo gráfico para 50 estaciones meteorológicas ubicadas en un departamento.
+
+```{r , echo = FALSE , collapse = TRUE}
+
+# CREAMOS UN VECTOR ALEATORIO DE TEMPERATURAS
+
+set.seed(123)
+temp <- rnorm(n = 30, mean = 19, sd = .75)
+idx <- 1:length(temp)
+
+temp <- data.frame(idx, temp)
+
+# CREAMOS UN GRÁFICO DE PUNTOS 
+
+library(ggplot2)
+
+fig <- ggplot() + 
+  geom_point(data = temp, aes(x = idx, y = temp), color = "black") +
+  geom_line(data = temp, aes(x = idx, y = temp), color = "blue") +
+  xlab("Date") + ylab("Temperatura ambiental (°C)") 
+
+fig
+
+```
+
+---
+
+- Para poder resolver el problema anterior necesitamos ejecutar una función que nos permita generar "n" cantidad de gráficos de manera automatizada, lo que hará el código más compacto y ahorraríamos tiempo.
+
+```{r , echo = TRUE , collapse = TRUE, eval = TRUE}
+
+library(ggplot2)
+
+plot_function <- function(temp) {
+  
+  for (i in 1:length(temp)) {
+    
+    idx <- 1:length(temp[[i]])
+    df <- data.frame(idx, temp[i])
+    names(df) <- c("idx", "temp")
+    
+    fig_print <- ggplot() + 
+      geom_point(data = df, aes(x = idx, y = temp), color = "black") +
+      geom_line(data = df, aes(x = idx, y = temp), color = "blue") +
+      xlab("Date") + ylab("Temperatura ambiental (°C)")
+    
+    dev.new()
+    print(fig_print)
+    
+    }
+
+  }
+
+```
+---
+
+
+class: inverse, center, middle
+
+# GRACIAS! <br/>  <a href="mailto: marvinjqs@gmail.com"> <img alt="gmail" src="../img/gmail-logo.gif" width='20%' height='50%'> </a> 
+
+
+
