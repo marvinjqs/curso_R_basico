@@ -133,7 +133,7 @@ if (x>5) {
 
 ## Instrucción "else"
 
-- La instrucción "if else" nos permite ejecutar un bloque de código cuando no se cumple con la condición evaluada por la instrucción "if". 
+- La instrucción "else" nos permite ejecutar un bloque de código cuando no se cumple con la condición evaluada por la instrucción "if". 
 
 ```{r , echo = TRUE , collapse = TRUE}
 
@@ -155,7 +155,7 @@ if (x>5) {
 
 ## Instrucción "else if"
 
-- La instrucción "if else" nos permite ejecutar un bloque de código cuando no se cumple con la condición evaluada por la instrucción "if" y se necesite más de una instrucción. 
+- La instrucción "else if" nos permite ejecutar un bloque de código cuando no se cumple con la condición evaluada por la instrucción "if" y se necesite más de una instrucción. 
 
 ```{r , echo = TRUE , collapse = TRUE}
 
