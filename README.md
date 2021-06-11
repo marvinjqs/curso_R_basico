@@ -72,3 +72,11 @@ R es un entorno y lenguaje de programación ampliamente usado en la ciencia de d
 | &nbsp;  &nbsp;  &nbsp;  &nbsp;• Instrucción "break" |
 | &nbsp;  &nbsp;  &nbsp;  &nbsp;• Instrucción "next" |
 
+| 🌏 CLASE 4: [LAS FUNCIONES EN R](https://marvinjonathcn.github.io/curso_R_basico/slides/04_Funciones/04_Funciones.html)  &nbsp;  |
+|:---------------------------------------------------------------|
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Introducción |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Las funciones |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Estructura de una función |
+| &nbsp;  &nbsp;  &nbsp;  &nbsp;• Importancia de las funciones |
+
+
