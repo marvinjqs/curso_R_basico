@@ -7,61 +7,46 @@
 
 # IMPORTAR EL ARCHIVO DE EXCEL EN FORMATO CSV
 
-library(lubridate)
+setwd("D:/PROYECTOS-R/curso_R_basico/script/CLASE5")
 
-setwd("C:/Users/Asus/Desktop/WASSER-WORLD/GOES PIURA/DATA/")
-
-df <- read.table("sapillica2-data.csv", 
-               header = T, 
-               sep = ";", 
+df <- read.table("qc00000618.txt", 
+               header = F, 
+               sep = " ", 
                stringsAsFactors = F,
-               na.strings = "S/D" )
+               na.strings = "-99.9" )
 
-fecha_horaria <- paste(df$FECHA, df$HORA, sep = " ")
-
-
-df$HORA <- as.POSIXct(fecha_horaria, format = "%d/%m/%Y %H:%M")
-
-df$FECHA <- as.POSIXct(df$FECHA, format = "%d/%m/%Y")
-
-names(df) <- c("FECHA", "HORA", "NIVEL", "PP")
+names(df) <- c("YEAR", "MES", "DIA", "PP", "TMAX", "TMIN")
 
 
-byday <- aggregate(PP ~ FECHA ,
+fecha_diaria <- paste(df$YEAR, df$MES, df$DIA, sep = "-")
+
+df$FECHA <- as.POSIXct(fecha_diaria, format = "%Y-%m-%d")
+
+df$FECHAS_m <- format(df$FECHA, format = "%Y-%m")
+
+############################
+
+pp_mensual <- aggregate(PP ~ FECHAS_m ,
                    data = df,FUN=sum)
 
-max(byday$PP)
-=======
-#########################################
-# PROCESAMIENTO DE DATOS DEL SENAMHI
-# Marvin J. Quispe Sedano
-# Email: marvinjqs@gmail.com
-########################################
+####################################
 
-# IMPORTAR EL ARCHIVO DE EXCEL EN FORMATO CSV
+df$TMEAN <- (df$TMAX + df$TMIN) / 2 
 
-library(lubridate)
+temp_mensual <- aggregate( TMEAN ~ FECHAS_m ,
+                        data = df,FUN=mean)
 
-setwd("C:/Users/Asus/Desktop/WASSER-WORLD/GOES PIURA/DATA/")
+##########################
 
-df <- read.table("sapillica2-data.csv", 
-               header = T, 
-               sep = ";", 
-               stringsAsFactors = F,
-               na.strings = "S/D" )
+df$FECHAS_a <- format(df$FECHA, format = "%Y")
 
-fecha_horaria <- paste(df$FECHA, df$HORA, sep = " ")
+temp_mensual_a <- aggregate( TMEAN ~ FECHAS_a ,
+                           data = df,FUN=mean)
+
+plot(temp_mensual[,2], type = "l")
 
 
-df$HORA <- as.POSIXct(fecha_horaria, format = "%d/%m/%Y %H:%M")
-
-df$FECHA <- as.POSIXct(df$FECHA, format = "%d/%m/%Y")
-
-names(df) <- c("FECHA", "HORA", "NIVEL", "PP")
 
 
-byday <- aggregate(PP ~ FECHA ,
-                   data = df,FUN=sum)
 
-max(byday$PP)
 
