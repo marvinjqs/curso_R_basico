@@ -79,7 +79,7 @@ R es un entorno y lenguaje de programación ampliamente usado en la ciencia de d
 | &nbsp;  &nbsp;  &nbsp;  &nbsp;• Estructura de una función |
 | &nbsp;  &nbsp;  &nbsp;  &nbsp;• Importancia de las funciones |
 
-| 🌏 CLASE 5: [LAS FUNCIONES EN R](https://marvinjonathcn.github.io/curso_R_basico/slides/05_Horarios_y_fechas/05_Horarios_y_fechas.html)  &nbsp;  |
+| 🌏 CLASE 5: [HORARIOS Y FECHAS EN R](https://marvinjonathcn.github.io/curso_R_basico/slides/05_Horarios_y_fechas/05_Horarios_y_fechas.html)  &nbsp;  |
 |:---------------------------------------------------------------|
 | &nbsp;  &nbsp;  &nbsp;  &nbsp;• Introducción |
 | &nbsp;  &nbsp;  &nbsp;  &nbsp;• Clases de horarios y/o fechas |
