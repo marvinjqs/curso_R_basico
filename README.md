@@ -20,7 +20,7 @@ R es un entorno y lenguaje de programación ampliamente usado en la ciencia de d
 
 | Nombre                  | Github        |  Email         |
 |:--------------------    |:--------------| :--------------|
-| Marvin j. Quispe Sedano | [@marvinjqs](https://github.com/marvinjqs)| marvinjqs@gmail.com |
+| Marvin J. Quispe Sedano | [@marvinjqs](https://github.com/marvinjqs)| marvinjqs@gmail.com |
 
 
 ### TEMARIO
