@@ -25,7 +25,7 @@ layout: true
   
 <div class="my-footer">
 <span>
-<a href="https://github.com/marvinjonathcn/curso_arcgis_intermedio" target="_blank"> ArcGIS - Nivel Intermedio
+<a href="https://github.com/marvinjonathcn/curso_arcgis_intermedio" target="_blank"> R - Nivel básico
 </a>
 </span>
 </div> 
